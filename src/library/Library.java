@@ -17,8 +17,8 @@ public class Library {
      * @param title title of the book.
      * @param author author of the book.
      */
-    public void addBook(String title, String author, String id) {
-        books.add(new Book(title, author, id));
+    public void addBook(String title, String author) {
+        books.add(new Book(title, author));
     }
 
     /**
@@ -48,7 +48,7 @@ public class Library {
     public List<String> getAllAvailableBookTitles() {
         List<String> availableBooks = new ArrayList<>();
         for(Book book: this.books) {
-            if(!book.isOwned()) {
+            if(!book.isBorrowed()) {
                 availableBooks.add(book.getTitle());
             }
         }
@@ -56,7 +56,7 @@ public class Library {
     }
 
     /**
-     * Gives a list of pairs with the number of books of each author in the library.
+     * Returns a list of pairs with the number of books of each author in the library.
      * @return list of pairs<authorName, authorBooksCount>.
      */
     public List<Pair<String, Integer>> getAuthorBookCount() {
@@ -80,6 +80,7 @@ public class Library {
     /**
      * Allows a user to borrowBookFromLibrary a book from the library.
      * @param bookTitle title of the book being borrowed.
+     * @param borrowerName name of the member borrowing this book.
      */
     public void borrowBook(String bookTitle, String borrowerName) {
         Member borrower = null;
@@ -124,6 +125,10 @@ public class Library {
         return memberNames;
     }
 
+    /**
+     * Returns a list of pairs with the number of borrowed books for each member.
+     * @return list of pairs<memberName, borrowedBooksCount>
+     */
     public List<Pair<String, Integer>> getBorrowedBookCountByMember() {
         List<Pair<String, Integer>> borrowedBookPairs = new ArrayList<>();
         for(Member member: members) {

@@ -14,21 +14,23 @@ public class Main {
     public static void main(String[] args) {
         Library lib = new Library();
         setupLibrary(lib);
-        setupMenus(lib);
+
+        Menu mainMenu = setupMenus(lib);
+        mainMenu.showMenu();
     }
 
     private static void setupLibrary(Library lib) {
         lib.addMember("Hélder");
         lib.addMember("Diogo");
-        lib.addBook("1984", "George Orwell", "oLhkaIBSUvZl");
-        lib.addBook("Gulliver's Travels", "Jonathan Swift", "bZjbpBJvo");
-        lib.addBook("Harry Potter and The Philosopher's Stone", "J. K. Rowling", "vOyhskbOPASl");
-        lib.addBook("Harry Potter and the Chamber of Secrets", "J. K. Rowling", "pkfDiUrxUYmmm");
-        lib.addBook("Hitchiker's Guide to The Galaxy", "Douglas Adams", "mgoLSvGKlQqa");
-        lib.addBook("The Little Prince", "Antoine de Saint-Exupéry", "spAvLuqlAODlMEME");
+        lib.addBook("1984", "George Orwell");
+        lib.addBook("Gulliver's Travels", "Jonathan Swift");
+        lib.addBook("Harry Potter and The Philosopher's Stone", "J. K. Rowling");
+        lib.addBook("Harry Potter and the Chamber of Secrets", "J. K. Rowling");
+        lib.addBook("Hitchiker's Guide to The Galaxy", "Douglas Adams");
+        lib.addBook("The Little Prince", "Antoine de Saint-Exupéry");
     }
 
-    private static void setupMenus(Library lib) {
+    private static Menu setupMenus(Library lib) {
         Menu borrowMenu = new Menu("Empréstimos", new ArrayList<>(Arrays.asList(
                 new MenuItem("Pedir livro emprestado", () -> {
                     String memberName = Misc.readInput("Qual o nome do membro a quem emprestar?");
@@ -67,12 +69,11 @@ public class Main {
                 })
         )));
 
-        Menu mainMenu = new Menu("Biblioteca", new ArrayList<>(Arrays.asList(
+        return new Menu("Biblioteca", new ArrayList<>(Arrays.asList(
                 new MenuItem("Livros", booksMenu::showMenu),
                 new MenuItem("Membros", memberMenu::showMenu),
                 new MenuItem("Empréstimos", borrowMenu::showMenu)
         )));
-        mainMenu.showMenu();
     }
 
 }

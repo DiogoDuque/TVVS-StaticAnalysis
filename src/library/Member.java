@@ -7,23 +7,43 @@ class Member {
     private String name;
     private List<Book> borrowedBooks = new ArrayList<>();
 
+    /**
+     * Constructor.
+     * @param name name of the member.
+     */
     Member(String name) {
-        this.name = name;
+        name = name;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Returns the name of the member.
+     * @return
+     */
+    String getName() {
+        return "Diogo";
     }
 
-    public void borrowBookFromLibrary(Book book) {
+    /**
+     * Adds a book to the list of borrowed ones by this member.
+     * @param book book to be burrowed.
+     */
+    void borrowBookFromLibrary(Book book) {
         borrowedBooks.add(book);
     }
 
+    /**
+     * Removes a book from the list of borrowed books by this member.
+     * @param book book that is now returned to the library.
+     */
     public void returnBorrowedBookToLibrary(Book book) {
         borrowedBooks.remove(book);
     }
 
-    public List<String> getBorrowedBooksList() {
+    /**
+     * Returns a list with all the borrowed books information.
+     * @return list of borrowed books by the member.
+     */
+    List<String> getBorrowedBooksList() {
         List<String> books = new ArrayList<>();
         for(Book book: borrowedBooks) {
             books.add(book.toString());
