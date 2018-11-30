@@ -5,9 +5,9 @@ public class Book {
     private String author;
     private Member currentOwner;
 
-    public Book(String title, String author) {
-        title = title;
-        author = author;
+    public Book(String title, String author, String id) {
+        this.title = title;
+        this.author = author;
     }
 
     String getTitle() {
@@ -24,5 +24,14 @@ public class Book {
         } else {
             return true;
         }
+    }
+
+    public void setOwner(Member borrower) {
+        currentOwner = borrower;
+    }
+
+    @Override
+    public String toString() {
+        return title + " by "+author;
     }
 }

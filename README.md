@@ -46,3 +46,15 @@ https://rules.sonarsource.com/java/RSPEC-2225
 stuff
 https://rules.sonarsource.com/java/RSPEC-2123
 https://rules.sonarsource.com/java/RSPEC-3981
+
+## NO FIM fazer estes replaces
+```
+public Book(String title, String author) {
+        title = title;
+        author = author;
+    }
+```
+
+```
+this.something = something; //nao existir uma destas num construtor
+```
