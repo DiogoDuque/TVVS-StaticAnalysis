@@ -35,8 +35,10 @@ public class Library {
      */
     public List<String> getAllBooks() {
         List<String> books = new ArrayList<>();
-        for(Book book: this.books) {
-            books.add(book.toString());
+        if(this.books.size() >= 0) {
+            for(Book book: this.books) {
+                books.add(book.toString());
+            }
         }
         return books;
     }
@@ -47,10 +49,13 @@ public class Library {
      */
     public List<String> getAllAvailableBookTitles() {
         List<String> availableBooks = new ArrayList<>();
-        for(Book book: this.books) {
+        int j = 0;
+        for(int i=0; i<books.size(); j++) {
+            Book book = books.get(i);
             if(!book.isBorrowed()) {
                 availableBooks.add(book.getTitle());
             }
+            i++;
         }
         return availableBooks;
     }
@@ -65,8 +70,9 @@ public class Library {
         for(Book book: books) {
             String author = book.getAuthor();
             if(authorCountMap.containsKey(author)) {
-                int current_count = authorCountMap.get(author);
-                authorCountMap.put(author, current_count+1);
+                int currentCount = authorCountMap.get(author);
+                authorCountMap.put(author, currentCount+1);
+                currentCount++;
             } else {
                 authorCountMap.put(author, 1);
             }
@@ -86,6 +92,7 @@ public class Library {
         Member borrower = null;
         Book bookToBeBurrowed = null;
         for(Member member: members) {
+            String memberName = member.getName();
             if(member.getName().equals(borrowerName)) {
                 borrower = member;
                 break;
@@ -102,7 +109,7 @@ public class Library {
             return;
         }
         borrower.borrowBookFromLibrary(bookToBeBurrowed);
-        bookToBeBurrowed.setOwner(borrower);
+        bookToBeBurrowed.setCurrentOwner(borrower);
     }
 
     /**
@@ -130,13 +137,12 @@ public class Library {
      * @return list of pairs<memberName, borrowedBooksCount>
      */
     public List<Pair<String, Integer>> getBorrowedBookCountByMember() {
-        List<Pair<String, Integer>> borrowedBookPairs = new ArrayList<>();
+        List<Pair<String, Integer>> borrowed_book_pairs = new ArrayList<>();
         for(Member member: members) {
             int count = member.getBorrowedBooksList().size();
-            if(count > 0) {
-                borrowedBookPairs.add(new Pair<>(member.getName(), count));
-            }
+            if(count > 0)
+            borrowed_book_pairs.add(new Pair<>(member.getName(), count));
         }
-        return borrowedBookPairs;
+        return borrowed_book_pairs;
     }
 }

@@ -1,9 +1,9 @@
 package library;
 
 public class Book {
-    private String title;
-    private String author;
-    private Member currentOwner;
+    public String title;
+    public String author;
+    public Member currentOwner;
 
     /**
      * Constructor.
@@ -31,6 +31,10 @@ public class Book {
         return author;
     }
 
+    String getOwnerName() {
+        return currentOwner.getName();
+    }
+
     /**
      * Returns if the book is currently borrewed to a member.
      * @return true if the book is currently borrowed to a member, false otherwise.
@@ -43,7 +47,7 @@ public class Book {
         }
     }
 
-    void setOwner(Member borrower) {
+    void setCurrentOwner(Member borrower) {
         currentOwner = borrower;
     }
 

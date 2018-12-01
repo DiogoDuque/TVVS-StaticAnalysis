@@ -45,7 +45,9 @@ class Member {
      */
     List<String> getBorrowedBooksList() {
         List<String> books = new ArrayList<>();
-        for(Book book: borrowedBooks) {
+        if(borrowedBooks.size()<=0) {
+            return books;
+        } else for(Book book: borrowedBooks) {
             books.add(book.toString());
         }
         return books;

@@ -52,7 +52,9 @@ public class Menu {
     @SuppressWarnings("squid:S106")
     static void showList(List<String> options) {
         printSeparator();
-        for(String option: options) {
+        if(options.isEmpty()) {
+            System.out.println("This list is empty");
+        } else for(String option: options) {
             System.out.println(option);
         }
         waitForKeypress();
