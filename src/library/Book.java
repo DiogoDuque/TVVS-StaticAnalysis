@@ -31,6 +31,10 @@ public class Book {
         return author;
     }
 
+    /**
+     * Returns the current owner of the book.
+     * @return name of current owner.
+     */
     String getOwnerName() {
         return currentOwner.getName();
     }
@@ -47,10 +51,17 @@ public class Book {
         }
     }
 
+    /**
+     * Assigns a new owner to the book.
+     * @param borrower member who is borrowing the book.
+     */
     void setCurrentOwner(Member borrower) {
         currentOwner = borrower;
     }
 
+    /**
+     * Assigns a book back to the library.
+     */
     void unsetOwner() {
         currentOwner = null;
     }
