@@ -26,9 +26,9 @@ public class Menu {
             for(int i=0; i<options.size(); i++) {
                 System.out.println(i+" -> "+options.get(i).toString());
             }
-            System.out.println(options.size()+" -> Sair");
+            System.out.println(options.size()+" -> Back");
             System.out.println();
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Pick an option: ");
             index = scanner.nextInt();
             if(index >=0 && index < options.size()) {
                 options.get(index).execute();

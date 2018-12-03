@@ -31,22 +31,22 @@ public class Main {
     }
 
     private static Menu setupMenus(Library lib) {
-        Menu borrowMenu = new Menu("Empréstimos", new ArrayList<>(Arrays.asList(
-                new MenuItem("Pedir livro emprestado", () -> {
-                    String memberName = Misc.readInput("Qual o nome do membro a quem emprestar?");
-                    String bookTitle = Misc.readInput("Qual o título do livro?");
+        Menu borrowMenu = new Menu("Borrowing/returning books", new ArrayList<>(Arrays.asList(
+                new MenuItem("Borrow a book", () -> {
+                    String memberName = Misc.readInput("Member's name:");
+                    String bookTitle = Misc.readInput("Book title:");
                     lib.borrowBook(bookTitle, memberName);
         }),
-                new MenuItem("Devolver livro emprestado", () -> {
-                    String memberName = Misc.readInput("Qual o nome do membro a que devolve?");
-                    String bookTitle = Misc.readInput("Qual o título do livro?");
+                new MenuItem("Return a book", () -> {
+                    String memberName = Misc.readInput("Member's name:");
+                    String bookTitle = Misc.readInput("Book title:");
                     lib.returnBookToLibrary(bookTitle, memberName);
                 })
         )));
 
-        Menu memberMenu = new Menu("Membros", new ArrayList<>(Arrays.asList(
-                new MenuItem("Ver todos os membros", () -> showList(lib.getAllMembersNames())),
-                new MenuItem("Ver quantidade de livros emprestados a cada membro", () -> {
+        Menu memberMenu = new Menu("Members", new ArrayList<>(Arrays.asList(
+                new MenuItem("See all members", () -> showList(lib.getAllMembersNames())),
+                new MenuItem("See how many books each member currently has", () -> {
                     List<Pair<String, Integer>> borrowedBooksPairs = lib.getBorrowedBookCountByMember();
                     List<String> borrowedBooksCountList = new ArrayList<>();
                     for(Pair<String, Integer> pair: borrowedBooksPairs) {
@@ -56,10 +56,10 @@ public class Main {
                 })
         )));
 
-        Menu booksMenu = new Menu("Livros", new ArrayList<>(Arrays.asList(
-                new MenuItem("Ver todos os livros", () -> showList(lib.getAllBooks())),
-                new MenuItem("Ver livros disponíveis para empréstimo", () -> showList(lib.getAllAvailableBookTitles())),
-                new MenuItem("Ver quantidade de livros escritos por cada autor", () -> {
+        Menu booksMenu = new Menu("Books", new ArrayList<>(Arrays.asList(
+                new MenuItem("See all books", () -> showList(lib.getAllBooks())),
+                new MenuItem("See available books", () -> showList(lib.getAllAvailableBookTitles())),
+                new MenuItem("See how many books of each author exist", () -> {
                     List<Pair<String, Integer>> authorCountPairs = lib.getAuthorBookCount();
                     List<String> authorCountList = new ArrayList<>();
                     for(Pair<String, Integer> pair: authorCountPairs) {
@@ -69,10 +69,10 @@ public class Main {
                 })
         )));
 
-        return new Menu("Biblioteca", new ArrayList<>(Arrays.asList(
-                new MenuItem("Livros", booksMenu::showMenu),
-                new MenuItem("Membros", memberMenu::showMenu),
-                new MenuItem("Empréstimos", borrowMenu::showMenu)
+        return new Menu("Library", new ArrayList<>(Arrays.asList(
+                new MenuItem("Books Menu", booksMenu::showMenu),
+                new MenuItem("Members Menu", memberMenu::showMenu),
+                new MenuItem("Borrow & Return Menu", borrowMenu::showMenu)
         )));
     }
 
